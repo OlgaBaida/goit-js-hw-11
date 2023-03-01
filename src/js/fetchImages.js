@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axios = require('axios').default;
+// const axios = require('axios').default;
  export default async function fetchImages(value, page) {
     try {
         const URL = 'https://pixabay.com/api/';
