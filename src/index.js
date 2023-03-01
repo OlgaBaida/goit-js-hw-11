@@ -84,7 +84,7 @@ function loadMore(query, page) {
     .then(respData => {
       maxHits = respData.totalHits;
       const maxPageNumber = Math.ceil(maxHits / 40);
-      if (page == 1) {
+      if (page === 1) {
         Notiflix.Notify.success(`Hooray! We found ${maxHits} images.`);
       }
       if (maxPageNumber > 1) {
