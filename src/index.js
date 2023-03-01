@@ -124,7 +124,6 @@ function onSubmit(event) {
     return loadMore(query);
   }
 }
-
 function onNeedMore() {
   page++;
   loadMore(query, page);
