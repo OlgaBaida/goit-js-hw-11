@@ -7,13 +7,13 @@ const search = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
-let page = 1;
+let page = 1 ;
 let query = '';
 let maxHits = 0;
 const pageSize = 40;
 
 function clearMarkup() {
-  page = 1;
+  page;
   gallery.innerHTML = '';
 }
 
@@ -42,7 +42,6 @@ function addElementMarkup(webformatURL, largeImageURL, tags, likes, views, comme
                     </a>`;
   gallery.innerHTML = galleryMarkup + newItem;
 }
-
 function addMarkup(data) {
   data.map(({
               webformatURL,
@@ -69,18 +68,14 @@ function addMarkup(data) {
     clearInterval(coolDown);
   });
 }
-
-function loadMore(query, page = 1) {
-  toggleShowMoreButton(false);
+function loadMore(query, page) {
   fetchImages(query, page)
+
     .then(resp => {
-      if (resp.status !== 200) {
-        throw new Error(resp.status);
-      }
+      if (resp.status !== 200) {}
       return resp.data;
     })
     .then(respData => {
-
       if (respData.totalHits === 0) {
         return Promise.reject({ message: `Sorry, there are no images matching your search query. Please try again.` });
       }
@@ -89,7 +84,7 @@ function loadMore(query, page = 1) {
     .then(respData => {
       maxHits = respData.totalHits;
       const maxPageNumber = Math.ceil(maxHits / 40);
-      if (page = 1) {
+      if (page === 1) {
         Notiflix.Notify.success(`Hooray! We found ${maxHits} images.`);
       }
       if (maxPageNumber > 1) {
@@ -117,11 +112,12 @@ function onSubmit(event) {
   if (query.length === 0) {
     return clearMarkup();
   } else if (query.length === 1) {
-    clearMarkup();
+    clearMarkup()
+    loadMoreBtn;
     return Notiflix.Notify.info(`Too many matches found. Please enter a more specific name.`);
   } else {
     clearMarkup();
-    return loadMore(query);
+    return loadMore(query, page);
   }
 }
 function onNeedMore() {
@@ -131,7 +127,7 @@ function onNeedMore() {
 
 const toggleShowMoreButton = (visible) => {
   if (visible) {
-    loadMoreBtn.classList.remove('visually-hidden');
+    loadMoreBtn.classList.remove('visually-hidden', true);
   } else if (!visible) {
     loadMoreBtn.classList.add('visually-hidden');
   }
