@@ -84,7 +84,7 @@ function loadMore(query, page) {
     .then(respData => {
       maxHits = respData.totalHits;
       const maxPageNumber = Math.ceil(maxHits / 40);
-      if (page === 1) {
+      if (page == 1) {
         Notiflix.Notify.success(`Hooray! We found ${maxHits} images.`);
       }
       if (maxPageNumber > 1) {
@@ -127,7 +127,7 @@ function onNeedMore() {
 
 const toggleShowMoreButton = (visible) => {
   if (visible) {
-    loadMoreBtn.classList.remove('visually-hidden', true);
+    loadMoreBtn.classList.remove('visually-hidden', );
   } else if (!visible) {
     loadMoreBtn.classList.add('visually-hidden');
   }
